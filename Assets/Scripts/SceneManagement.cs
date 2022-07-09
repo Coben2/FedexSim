@@ -39,4 +39,14 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene("Box Scene");
     }
 
+    public void RetryScene()
+    {
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

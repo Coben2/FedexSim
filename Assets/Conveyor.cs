@@ -14,6 +14,7 @@ public class Conveyor : MonoBehaviour
     public Canvas questionCanvas;
     public bool hasBoxMoved;
     Vector3 moveBoxPos;
+    Vector3 boxPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +24,16 @@ public class Conveyor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hasBoxMoved)
-        {
-            CheckDistance();
-
-        }
      
-        if(instance.BoxMove() != null)
+        if(instance.BoxInitialize() != null)
         {
             box = instance.boxCopy;
+            if(box != null)
+            {
+                boxPosition = box.transform.position;
+            }
+          
+            Debug.Log(box);
         }
         if (entered)
         {
@@ -46,6 +48,7 @@ public class Conveyor : MonoBehaviour
         
         if(collision.gameObject.tag == "Non IC")
         {
+            entered = true;
             collisions = collision;
         }
 
@@ -55,26 +58,36 @@ public class Conveyor : MonoBehaviour
     {
         moveBoxPos = conveyorStartPos.position;
         Debug.Log(moveBoxPos);
-        hasBoxMoved = true;
     }
 
-    public void CheckDistance()
+    public bool CheckDistance()
     {
-        Vector3.Lerp(box.transform.position, moveBoxPos, 1);
-        if (Vector3.Distance(moveBoxPos, box.transform.position) < 0.1f)
+        float time = 0;
+        time += Time.deltaTime;
+        if(time < 1)
         {
-            hasBoxMoved = false;
+          box.transform.position = Vector3.Lerp(boxPosition, moveBoxPos, time);
+        if (Vector3.Distance(moveBoxPos, box.transform.position) <= 0.1f)
+        {
+                return true;
+                Debug.Log("box has moved");
         }
         else
         {
-            
+                return false;
+                Debug.Log("box hasn't moved");
         }
+        }
+        return false;
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        collisions = collision;
         entered = false;
+        collisions.gameObject.SetActive(false);
         Debug.Log("not moving");
        
     }
+
 }

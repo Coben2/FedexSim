@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IC Scene.unity
     guid: 4a7ee7f3dade9da459e65c919fae9a93
+  - enabled: 1
+    path: Assets/Scenes/Fedex Sim.unity
+    guid: d548710ac88dd5648836d1cb2b893451
   m_configObjects: {}
