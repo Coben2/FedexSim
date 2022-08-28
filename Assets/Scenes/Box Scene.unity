@@ -5627,6 +5627,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 564853178}
     - target: {fileID: 8632988097934253833, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
+      propertyPath: buttons
+      value: 
+      objectReference: {fileID: 11400000, guid: 04f60bc118544324fad792adc5c00273, type: 2}
+    - target: {fileID: 8632988097934253833, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
       propertyPath: openBox
       value: 
       objectReference: {fileID: 342242220}
@@ -5674,6 +5678,10 @@ PrefabInstance:
       propertyPath: clickAndDragAnimation
       value: 
       objectReference: {fileID: 1951305199}
+    - target: {fileID: 8632988097934253833, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
+      propertyPath: camPositions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8632988097934253833, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
       propertyPath: backButton.Array.data[0]
       value: 

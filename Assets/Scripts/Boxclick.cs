@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Boxclick : MonoBehaviour
+public class Boxclick : MonoBehaviour //SCRIPTABLE OBJECT FOR THE BOXES????????????????????????????????????????????????????????????
 {
     // Start is called before the first frame update
     private Camera mainCam;
@@ -14,14 +14,23 @@ public class Boxclick : MonoBehaviour
     public Transform boxCluster;
     public Transform firstBox;
 
-    public CanvasGroup ICGroup;
-    [SerializeField] private BoxRotate boxRotate;
+    private Dictionary<ArrayList, Vector3> camPlacement = new Dictionary<ArrayList, Vector3>();
+    private Dictionary<int, Button> buttonPlacement = new Dictionary<int, Button>(); //how to make buttons both back and next buttons as the value (New Dictionary?)
+    public Vector3[] camPositions;
+    public Button beginningBackButton;
+    public Button[] backButton = new Button[3]; //TODO: Rearrange Back Buttons 
+    public Button[] nextButton = new Button[3];
+    public BoxRotate[] boxRotates;
+    public Buttons buttons;
+    //public List<Buttons> buttonsList;
+
+    public CanvasGroup ICGroup; 
+    [SerializeField] private BoxRotate boxRotate; //TODO: Delete refs of this to include in array
     public TextMeshProUGUI clickBoxPrompt;
     public CanvasGroup backButtonPrompt;
     public CanvasGroup clickAndDragAnimation;
     public Canvas boxInfo;
-    public Button[] backButton = new Button[3];
-    public Button[] nextButton = new Button[3];
+
     public Button previousSceneButton;
     public Button startButton;
 
@@ -41,7 +50,18 @@ public class Boxclick : MonoBehaviour
         clickAndDragAnimation.alpha = 0;
         boxAnimation.SetBool("Bob", true);
         clickBoxPrompt.enabled = true;
-        
+
+        //buttonsList = new List<Buttons>(buttons.buttonsList.Count);
+
+        //camPlacement.Add(buttons.b, camPositions[0]);
+        //camPlacement.Add(backButton[1], camPositions[1]);
+        //camPlacement.Add(backButton[2], camPositions[2]);
+        //camPlacement.Add(backButton[3], camPositions[3]);
+
+        buttonPlacement.Add(1, backButton[1]);
+        buttonPlacement.Add(2, backButton[2]);
+        buttonPlacement.Add(3, backButton[3]);
+        buttonPlacement.Add(4, backButton[4]);
     }
     private Coroutine MouseRelease;
 
@@ -146,9 +166,66 @@ public class Boxclick : MonoBehaviour
         previousSceneButton.gameObject.SetActive(false);
         clickAndDragAnimation.alpha = 0;
         clickAndDragAnimation.interactable = false;
-        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, firstBox.position, 1);
+
+       
+        CamPlacements();
+
+        
+
     }
-    
+
+    public void NextButton(int button)
+    {
+        foreach(var b in buttonPlacement)
+        {
+            //TODO: Check if any buttons or box rotates are null
+            button = b.Key;
+            if(buttonPlacement[b.Key +1] != null)
+            {
+                buttonPlacement[button + 1].enabled = true;
+                buttonPlacement[button].enabled = false;
+            }
+            if(boxRotates[b.Key + 1] != null)
+            {
+                boxRotates[b.Key + 1].enabled = true;
+                boxRotates[b.Key].enabled = false; //is this good for enabling the next box's rotation?
+            }
+        }
+        CamPlacements();
+    }
+    public void BackButton(int button)
+    {
+        foreach(var b in buttonPlacement)
+        {
+
+            button = b.Key;
+            if(buttonPlacement[b.Key -1] != null)
+            {
+                buttonPlacement[button - 1].enabled = true;
+                buttonPlacement[button].enabled = false;
+            }
+            if(boxRotates[b.Key -1] != null)
+            {
+                boxRotates[b.Key - 1].enabled = true;
+                boxRotates[b.Key].enabled = false;
+            }
+        }
+        CamPlacements();
+    }
+    private void CamPlacements()
+    {
+       foreach (var b in camPlacement)
+        {
+            //is dictionary of a dictionary necessary to get the index of button and button itself?
+            var newCamPosition = camPlacement[b.Key]; //Wanted to do camPlacement[b +1] for unity button event 
+            mainCam.transform.position = newCamPosition;
+
+            
+            
+        }
+        
+    }
+
     public void BackButton2()
     {
         clickBoxPrompt.enabled = false;
