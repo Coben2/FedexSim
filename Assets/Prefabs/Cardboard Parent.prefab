@@ -50,17 +50,21 @@ MonoBehaviour:
   openBox: {fileID: 0}
   boxCluster: {fileID: 0}
   firstBox: {fileID: 0}
+  camPositions: []
+  beginningBackButton: {fileID: 0}
+  backButton:
+  - {fileID: 0}
+  nextButton:
+  - {fileID: 0}
+  - {fileID: 0}
+  boxRotates: []
+  buttons: {fileID: 0}
   ICGroup: {fileID: 0}
   boxRotate: {fileID: 4171357222393646016}
   clickBoxPrompt: {fileID: 0}
   backButtonPrompt: {fileID: 0}
   clickAndDragAnimation: {fileID: 0}
   boxInfo: {fileID: 0}
-  backButton:
-  - {fileID: 0}
-  nextButton:
-  - {fileID: 0}
-  - {fileID: 0}
   previousSceneButton: {fileID: 0}
   startButton: {fileID: 0}
   boxAnimation: {fileID: 4444563310908920348}

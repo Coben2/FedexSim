@@ -2,36 +2,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using System.Collections.Generic;
+
+//make ONE CANVAS to hold EACH box text and have this script get the index of the box/string data to cycle through
 public class ButtonLogic : MonoBehaviour
 {
     public ButtonScreen[] buttons;
     public int currentButton;
     public BoxRotate[] boxRotates;
     private Dictionary<int, Transform> camPlacement = new Dictionary<int, Transform>();
-
-    private Camera cam;
     
     private void Start()
     {
-        cam = Camera.main;
+
 
         camPlacement.Add(0, boxRotates[0].transform); //only back[0] should reach this value
         camPlacement.Add(1, boxRotates[1].transform); //only next[0] and back[1] should reach this value
         //camPlacement.Add(2, boxRotates[2].transform); //only next[1] and back[2] should reach this value
         //camPlacement.Add(3, boxRotates[3].transform); //only next[2] should reach this value
     }
-    public void SetButton()
-    {
-        if(buttons!= null)
-        {
-            currentButton = buttons.;
-        }
-        else
-        {
-            Debug.LogError("Must make more buttons");
-        }
+    //public void SetButton()
+    //{
+    //    if(buttons!= null)
+    //    {
+    //        currentButton = buttons;
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Must make more buttons");
+    //    }
 
-    }
+    //}
     public void NextButton(int button)
     {
         foreach(var b in buttons)
@@ -91,7 +91,6 @@ public class ButtonLogic : MonoBehaviour
             if(camIndex == currentButton)
             {
                 var newCamPosition = camPlacement[buttonIndex]; //Wanted to do camPlacement[b +1] for unity button event 
-                cam.transform.position = newCamPosition.transform.position;
             }
             camIndex++;
         }

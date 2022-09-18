@@ -71,7 +71,7 @@ public class Conveyor : MonoBehaviour
         {
                 return true;
                 Debug.Log("box has moved");
-        }
+        } 
         else
         {
                 return false;
