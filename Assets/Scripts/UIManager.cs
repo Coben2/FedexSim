@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Drag UI")]
     private Coroutine MouseRelease;
     private WaitForSeconds interval = new WaitForSeconds(5);
+    public CanvasGroup clickAndDragAnimation;
+    public bool boxOnScreen;
+    private bool clicked;
+
     public Button Back;
     public Button Next;
-    public CanvasGroup clickAndDragAnimation;
+
+    [Header("SceneManagement")]
+    public static Button sceneProgressionButton;
     public CanvasManager cm;
-    public bool boxOnScreen;
     // Start is called before the first frame update
-    void Awake()
-    {
-        cm = FindObjectOfType<CanvasManager>();
-    }
     private void Start()
     {
-        boxOnScreen = GameObject.FindWithTag("Box") ? true : false;
     }
+
     // Update is called once per frame
     void Update()
     {
+        boxOnScreen = GameObject.FindGameObjectWithTag("Box") ? true : false;
+        ClickAndDrag();
+    }
+    
+    private void ClickAndDrag()
+    {
+        clicked = Input.GetMouseButton(0) && BoxRotate.isDragging;
         if (Input.GetMouseButtonUp(0) && boxOnScreen)
         {
             //if mouse button is released, checks is MouseRelease has a coroutine already running and stops it before starting a new one.
@@ -31,14 +43,15 @@ public class UIManager : MonoBehaviour
             {
                 StopCoroutine(MouseRelease);
             }
-            if (!cm.boxBeingClicked)
+            if (!clicked)
             {
                 Debug.Log("Coroutine Started");
                 MouseRelease = StartCoroutine(BoxRotateAndUIManipulation());
             }
         }
-        else if(Input.GetMouseButtonDown(0) && boxOnScreen)
+        else if (clicked && boxOnScreen)
         {
+            StopCoroutine(MouseRelease);
             clickAndDragAnimation.alpha = 0;
             Back.gameObject.SetActive(true);
             Next.gameObject.SetActive(true);
@@ -51,6 +64,16 @@ public class UIManager : MonoBehaviour
         Next.gameObject.SetActive( false);
         clickAndDragAnimation.alpha = 1;
         clickAndDragAnimation.interactable = false;
-
+    }
+    public bool Ready2SceneChange()
+    {
+        for (int i = 0; i < cm.boxes.Length; i++)
+        {
+            if (i == 0 && Back || i == cm.boxes.Length && Next) //if index is at 0 and back button pressed or index is at length and next button pressed
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,9 +10,10 @@ public class CanvasManager : MonoBehaviour
     public BoxRotate boxRotate;
     public Animator [] anim;
     public int currentBox = 0;
-    public bool boxBeingClicked;
+    public bool boxOnScreen;
     private void Awake()
     {
+        boxOnScreen = GameObject.FindGameObjectWithTag("Box");
         anim = GetComponentsInChildren<Animator>(true);
         SetupBox();
     }
@@ -22,38 +23,43 @@ public class CanvasManager : MonoBehaviour
     }
     public void NextBox()
     {
-        if(currentBox == boxes.Length - 1)
-        {
-            return;
-        }
-        currentBox++;
-        SetupBox();
+
+            if (currentBox == boxes.Length - 1)
+            {
+                return;
+            }
+            currentBox++;
+            SetupBox();
+        
     }
 
     public void PreviousBox()
     {
-        if (currentBox == 0)
-        {
-            return;
-        }
-        currentBox--;
-        SetupBox();
+
+            if (currentBox == 0)
+            {
+                return;
+            }
+            currentBox--;
+            SetupBox();
+        
     }
 
-    public void SetupBox( )
-    {
-        for (int i = 0; i < boxes.Length; i++)
-        {
-            if (i == currentBox)
+    public void SetupBox()
+    { 
+            for (int i = 0; i < boxes.Length; i++)
             {
-                boxes[i].gameObject.SetActive(i == currentBox);
+                if (i == currentBox)
+                {
+                    boxes[i].gameObject.SetActive(i == currentBox);
+                }
+                else if (i != currentBox)
+                {
+                    boxes[i].gameObject.SetActive(false);
+                }
             }
-            else if (i != currentBox)
-            {
-                boxes[i].gameObject.SetActive(false);
-            }
-        }
-        boxText.text = boxes[currentBox].text;
+            boxText.text = boxes[currentBox].text;
+        
     }
 
     void RotateBox()
@@ -67,7 +73,6 @@ public class CanvasManager : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Box")
                 {
                     boxRotate.enabled = true;
-                    boxBeingClicked = true;
                 }
             }
         }

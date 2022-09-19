@@ -6,7 +6,7 @@ public class BoxRotate : MonoBehaviour
 {
     public Vector2 turn;
     public float rotationSpeed;
-
+    public static bool isDragging;
     private void Start()
     {
         
@@ -22,6 +22,7 @@ public class BoxRotate : MonoBehaviour
         turn.x += xRot;
         turn.y += yRot;
         transform.localRotation = Quaternion.Euler(turn.y, -turn.x, 0);
+        isDragging = true;
         Debug.Log("IsDragging");
     }
 }

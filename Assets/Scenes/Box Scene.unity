@@ -217,9 +217,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43839143}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3917f40b678d611449a7ee99664a0b9f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1ade77ad31b135748ac08c0fe05110d0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -295,19 +295,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2976438313775198563, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
   m_PrefabInstance: {fileID: 7215104385218327012}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &207071480
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207071479}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &207071481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2808733139319287912, guid: f8eb253fdd9c1b645a9f76be29cbe31e, type: 3}
@@ -826,14 +813,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxText: {fileID: 1114031021}
-  boxes:
-  - {fileID: 530261243}
-  - {fileID: 0}
-  - {fileID: 0}
+  boxes: []
   boxRotate: {fileID: 0}
   anim: []
   currentBox: 0
-  boxBeingClicked: 0
 --- !u!223 &377690023
 Canvas:
   m_ObjectHideFlags: 0
@@ -1275,7 +1258,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentBox: 0
-  boxBeingClicked: 0
 --- !u!114 &590490951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,6 +1727,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1174670578}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: TryLoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2831,11 +2825,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3592415e1be0b8446b4919137725ab7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAndDragAnimation: {fileID: 1951305199}
+  boxOnScreen: 0
   Back: {fileID: 733271636}
   Next: {fileID: 2052232860}
-  clickAndDragAnimation: {fileID: 1951305199}
-  cm: {fileID: 0}
-  boxOnScreen: 0
+  activeButton: {fileID: 0}
+  cm: {fileID: 590490950}
 --- !u!4 &1383330199
 Transform:
   m_ObjectHideFlags: 0
@@ -4035,6 +4030,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1174670578}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: TryLoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
