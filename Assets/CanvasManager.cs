@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour
     public void NextBox()
     {
 
-            if (currentBox == boxes.Length - 1)
+            if (currentBox == boxes.Length -1)
             {
                 return;
             }

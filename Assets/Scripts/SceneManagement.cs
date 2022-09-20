@@ -26,6 +26,11 @@ public class SceneManagement : MonoBehaviour
             SceneManager.LoadScene(sceneNumber);
         }
     }
+
+    public void LoadRandomScene(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+    }
     public void LoadNextScene()
         {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

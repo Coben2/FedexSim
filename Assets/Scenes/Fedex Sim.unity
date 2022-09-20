@@ -33967,12 +33967,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 658864475}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: RetryScene
-        m_Mode: 1
+        m_MethodName: LoadRandomScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -36288,7 +36288,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00064087, y: -36.4554}
-  m_SizeDelta: {x: 493.85, y: 160.4708}
+  m_SizeDelta: {x: 592.1022, y: 226.9646}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &939513528
 MonoBehaviour:
@@ -36340,10 +36340,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 28.85
   m_fontSizeBase: 14
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -51639,8 +51639,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 658864475}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: MainMenu
-        m_Mode: 1
+        m_MethodName: LoadRandomScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

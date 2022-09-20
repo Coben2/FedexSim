@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     public Button Back;
     public Button Next;
+    public bool backPressed, nextPressed;
 
     [Header("SceneManagement")]
     public static Button sceneProgressionButton;
@@ -65,12 +66,27 @@ public class UIManager : MonoBehaviour
         clickAndDragAnimation.alpha = 1;
         clickAndDragAnimation.interactable = false;
     }
+
+    public void BackButtonPress()
+    {
+        backPressed = true;
+    }
+    public void NextButtonPress()
+    {
+        nextPressed = true;
+    }
     public bool Ready2SceneChange()
     {
         for (int i = 0; i < cm.boxes.Length; i++)
         {
-            if (i == 0 && Back || i == cm.boxes.Length && Next) //if index is at 0 and back button pressed or index is at length and next button pressed
+            if (i == 0 && backPressed == true ) //if index is at 0 and back button pressed or index is at length and next button pressed
             {
+                backPressed = false;
+                return true;
+            }
+            else if( i == cm.boxes.Length && nextPressed == true)
+            {
+                nextPressed = false;
                 return true;
             }
         }
